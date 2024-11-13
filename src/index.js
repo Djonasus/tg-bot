@@ -81,16 +81,17 @@ function sendQuestion(chatId) {
   const user = userState[chatId];
 
   if (user.currentQuestionIndex < user.questions.length) {
-    const question = user.questions[user.currentQuestionIndex];
-    const options = [...question.incorrectAnswers, question.correctAnswer].sort(
-      () => Math.random() - 0.5
-    );
+    const currentQuestion = user.questions[user.currentQuestionIndex];
+    const options = [
+      ...currentQuestion.incorrectAnswers,
+      currentQuestion.correctAnswer,
+    ].sort(() => Math.random() - 0.5);
 
     const inlineKeyboard = options.map((option) => [
       { text: option, callback_data: option },
     ]);
 
-    bot.sendMessage(chatId, question.question, {
+    bot.sendMessage(chatId, currentQuestion.question, {
       reply_markup: {
         inline_keyboard: inlineKeyboard,
       },
