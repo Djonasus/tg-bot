@@ -10,24 +10,22 @@ let userState = {}; // Объект для хранения состояния �
  * Функция для получения вопросов с The Trivia API
  * @returns {Array} Массив вопросов
  */
-async function fetchQuestions() {
-  let result = [];
 
+async function fetchQuestions() {
   try {
     const response = await fetch(
       "https://the-trivia-api.com/api/questions?limit=5"
     );
-
     if (response.ok) {
-      result = await response.json();
+      return await response.json(); // Возвращаем результат вызова в виде промиса
     } else {
       console.error(`Ошибка HTTP: ${response.status}`);
+      return []; // Возвращаем пустой массив в случае ошибки
     }
   } catch (err) {
     console.error("Произошла ошибка при получении данных:", err);
+    return []; // Возвращаем пустой массив в случае ошибки
   }
-
-  return result;
 }
 
 /**
