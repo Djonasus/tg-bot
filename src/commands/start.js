@@ -1,6 +1,6 @@
 module.exports = {
     name: "start",
-    execute: async (bot, _, chat) =>{
-      bot.sendMessage(chat, "Привет! Я бот-викторина. Набери /quiz, чтобы начать!");
+    execute: async (toolset) =>{
+      toolset.bot.sendMessage(toolset.chatId, "Привет! Я бот-викторина. Набери /quiz, чтобы начать или /category для выбора категории!")
     }
   }
